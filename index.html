@@ -215,6 +215,11 @@ function viewMes(v){
   const c=el('div','card');c.appendChild(el('h2',null,'Venta por día'));c.appendChild(el('p','note','Línea punteada: objetivo $5M/día.'));
   const ch=el('div',null,null,{'data-source':'porDia'});ch.style.minHeight='200px';c.appendChild(ch);v.appendChild(c);
   bars(ch,rows,{max:5.5e6,goal:GOAL});
+  const DN=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const dr=days.slice().reverse().map(r=>({fecha:r.fecha,dia:DN[utc(r.fecha).getUTCDay()]+' '+(+r.fecha.slice(8)),ordenes:r.ordenes,venta:r.venta,obj:Math.round(r.venta/GOAL*100)+'%'}));
+  const c3=el('div','card');c3.appendChild(el('h2',null,'Detalle por día'));c3.appendChild(el('p','note','Monto de cada día del mes, del más reciente al más antiguo.'));
+  const dc=[{f:'dia',h:'Día',cls:'art'},{f:'ordenes',h:'Ventas'},{f:'venta',h:'Monto',fmt:fm},{f:'obj',h:'% obj.'}];
+  const bx3=el('div','box');bx3.appendChild(table(dc,dr,'porDia','fecha',r=>ek(r.fecha)));c3.appendChild(bx3);v.appendChild(c3);
   }else if(S.sub==='articulos'){
   const top=D.artMes.filter(r=>r.mes===S.mes).sort((a,b)=>b.venta-a.venta).slice(0,25);
   const c2=el('div','card');c2.appendChild(el('h2',null,'Artículos del mes'));c2.appendChild(el('p','note','Top 25 por venta.'));
