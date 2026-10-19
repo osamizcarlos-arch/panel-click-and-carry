@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel Click and Carry</title>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paris Night Mercadolibre</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1a1a1a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PN Ventas"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png">
 <style>:root{--color-fg:#1a1a1a;--color-fg-muted:#6b6b6b;--color-bg:#f6f6f4;--color-panel:#fff;--color-border-line:#e3e3e0;--cds-radius:12px;--cds-gap-md:12px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-lg:16px;--cds-pad-xl:24px;--cds-font-size-caption:12px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:22px;--cds-font-weight-medium:500;--cds-chart-grid:#e5e5e2;--cds-chart-reference:#8a8a86;--cds-surface-popover:#fff;--cds-border:#d8d8d4;--cds-shadow-popover:0 2px 8px rgba(0,0,0,.15);--font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif}
 @media(prefers-color-scheme:dark){:root{--color-fg:#ececea;--color-fg-muted:#a3a3a0;--color-bg:#121212;--color-panel:#1c1c1c;--color-border-line:#333;--cds-chart-grid:#2c2c2c;--cds-surface-popover:#242424;--cds-border:#444}}
 html,body{margin:0;background:var(--color-bg)}body{padding:16px 16px 0}
@@ -244,5 +244,5 @@ function render(){
 }
 dash.onData(render);
 </script>
-
+<script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});</script>
 </body></html>
