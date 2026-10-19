@@ -248,6 +248,12 @@ function render(){
 }
 dash.onData(render);
 if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+(function(){var busy=false;
+function check(){if(busy||document.visibilityState!=="visible")return;busy=true;
+fetch("./?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.text();}).then(function(h){
+var m=h.match(/Actualizado: ([0-9\/ :]+)/),f=document.querySelector(".foot");
+if(m&&f&&f.textContent.indexOf(m[1].trim())<0)location.reload();}).catch(function(){}).then(function(){busy=false;});}
+document.addEventListener("visibilitychange",check);window.addEventListener("pageshow",check);window.addEventListener("focus",check);setInterval(check,300000);})();
 </script>
 
 </body></html>
