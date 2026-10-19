@@ -249,5 +249,6 @@ function render(){
 }
 dash.onData(render);
 </script>
-<script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});</script>
+<script>if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+var __t=Date.now();document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&Date.now()-__t>60000)location.reload();});window.addEventListener("pageshow",function(e){if(e.persisted)location.reload();});</script>
 </body></html>
