@@ -1,6 +1,6 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel Locales Paris Night</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#2f6fb0"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PN Locales"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png">
-<style>:root{--color-fg:#1a1a1a;--color-fg-muted:#6b6b6b;--color-bg:#f6f6f4;--color-panel:#fff;--color-border-line:#e3e3e0;--cds-radius:12px;--cds-gap-md:12px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-lg:16px;--cds-pad-xl:24px;--cds-font-size-caption:12px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:22px;--cds-font-weight-medium:500;--cds-chart-grid:#e5e5e2;--cds-chart-reference:#8a8a86;--cds-surface-popover:#fff;--cds-border:#d8d8d4;--cds-shadow-popover:0 2px 8px rgba(0,0,0,.15);--font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif}
-@media(prefers-color-scheme:dark){:root{--color-fg:#ececea;--color-fg-muted:#a3a3a0;--color-bg:#121212;--color-panel:#1c1c1c;--color-border-line:#333;--cds-chart-grid:#2c2c2c;--cds-surface-popover:#242424;--cds-border:#444}}
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel Locales Paris Night</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#181818"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PN Locales"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png">
+<style>:root{--color-fg:#1a1a1a;--color-fg-muted:#6b6b6b;--color-bg:#f6f6f4;--color-panel:#fff;--color-border-line:#e3e3e0;--cds-radius:12px;--cds-gap-md:12px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-lg:16px;--cds-pad-xl:24px;--cds-font-size-caption:12px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:22px;--cds-font-weight-medium:500;--cds-chart-grid:#e5e5e2;--cds-chart-reference:#8a8a86;--cds-surface-popover:#fff;--cds-border:#d8d8d4;--cds-shadow-popover:0 2px 8px rgba(0,0,0,.15);--font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif;--bar:#a9a9a9;--bar-hi:#181818;--hero:#181818}
+@media(prefers-color-scheme:dark){:root{--color-fg:#ececea;--color-fg-muted:#a3a3a0;--color-bg:#121212;--color-panel:#1c1c1c;--color-border-line:#333;--cds-chart-grid:#2c2c2c;--cds-surface-popover:#242424;--cds-border:#444;--bar:#6e6e6e;--bar-hi:#ececea;--hero:#2e2e2e}}
 html,body{margin:0;background:var(--color-bg)}body{padding:16px 16px 0}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script></head><body>
@@ -107,7 +107,7 @@ function bars(host,rows,o){
   svg.append('g').selectAll('text').data(ticks).join('text').attr('x',m.l-5).attr('y',d=>y(d)+4).attr('text-anchor','end').attr('fill','var(--color-fg-muted)').attr('font-size',10).text(fK);
   const tip=el('div','tip');
   const show=(ev,r)=>{tip.textContent=r.tip;tip.style.display='block';const b=host.getBoundingClientRect();const px=Math.min(Math.max(ev.clientX-b.left,70),b.width-70);tip.style.left=px+'px';tip.style.top=Math.max(0,y(r.value)-34)+'px';};
-  svg.append('g').selectAll('rect').data(rows).join('rect').attr('x',(r,i)=>x(i)).attr('width',x.bandwidth()).attr('y',r=>y(r.value)).attr('height',r=>Math.max(0,y(0)-y(r.value))).attr('rx',3).attr('fill',r=>r.hi?dash.colors[1]:dash.colors[0])
+  svg.append('g').selectAll('rect').data(rows).join('rect').attr('x',(r,i)=>x(i)).attr('width',x.bandwidth()).attr('y',r=>y(r.value)).attr('height',r=>Math.max(0,y(0)-y(r.value))).attr('rx',3).attr('fill',r=>r.hi?'var(--bar-hi)':'var(--bar)')
     .on('pointermove',show).on('pointerdown',show).on('pointerleave',()=>{tip.style.display='none';});
   if(o.goal)svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(o.goal)).attr('y2',y(o.goal)).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','4 4');
   svg.append('g').selectAll('text').data(rows.map((r,i)=>[r,i]).filter(d=>d[0].lab)).join('text').attr('x',d=>x(d[1])+x.bandwidth()/2).attr('y',H-7).attr('text-anchor','middle').attr('fill','var(--color-fg-muted)').attr('font-size',10).text(d=>d[0].lab);
@@ -119,7 +119,7 @@ function table(cols,rows,src,keyCols,keyFn){
   const tb=el('tbody');rows.forEach(r=>{const tr=el('tr',null,null,{'data-key':keyFn(r)});cols.forEach(c=>tr.appendChild(el('td',c.cls||null,c.fmt?c.fmt(r[c.f]):r[c.f])));tb.appendChild(tr);});t.appendChild(tb);return t;}
 const ek=(...p)=>p.map(encodeURIComponent).join(',');
 function hero(label,value,src,field,where){
-  const h=el('div','hero');h.style.background=dash.colors[0];h.appendChild(el('div','lbl',label));
+  const h=el('div','hero');h.style.background='var(--hero)';h.appendChild(el('div','lbl',label));
   const a={};if(where){a['data-source']=src;a['data-field']=field;a['data-where']=where;}
   h.appendChild(el('span','big',value,a));return h;}
 function mini(label,value,src,field,where){
@@ -153,7 +153,7 @@ function cityBlock(v,kind,key){
   prov.slice(0,8).forEach(r=>{const row=el('div');row.style.margin='8px 0';
     const t=el('div');t.style.cssText='display:flex;justify-content:space-between;gap:8px';t.appendChild(el('span',null,r.provincia));t.appendChild(el('span','lbl',fm(r.venta)+' · '+Math.round(r.venta/tot*100)+'%'));
     const bar=el('div');bar.style.cssText='height:8px;border-radius:4px;background:var(--color-border-line);margin-top:3px';
-    const fill=el('div');fill.style.cssText='height:8px;border-radius:4px;width:'+(r.venta/mx*100)+'%;background:'+dash.colors[0];bar.appendChild(fill);row.append(t,bar);list.appendChild(row);});
+    const fill=el('div');fill.style.cssText='height:8px;border-radius:4px;width:'+(r.venta/mx*100)+'%;background:var(--bar-hi)';bar.appendChild(fill);row.append(t,bar);list.appendChild(row);});
   c.appendChild(list);v.appendChild(c);
   const c2=el('div','card');c2.appendChild(el('h2',null,'Por caja'));c2.appendChild(el('p','note','Venta de cada caja.'));
   const cols=[{f:'ciudad',h:'Caja',cls:'art'},{f:'provincia',h:'Local'},{f:'ordenes',h:'Ventas'},{f:'venta',h:'Venta',fmt:fm}];
