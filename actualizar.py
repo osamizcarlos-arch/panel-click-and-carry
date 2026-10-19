@@ -74,7 +74,7 @@ for k, new in (("ordenes", ord_rows), ("lineas", lin_rows), ("ciudades", ciu_row
     raw[k]["rows"] = keep + new
 html = html[:m.start(1)] + json.dumps(raw, ensure_ascii=False, separators=(",", ":")) + html[m.end(1):]
 d = now
-html = re.sub(r"1/1 al \d+/\d+/\d{4} \(el \d+/\d+ es parcial\)", f"1/1 al {d.day}/{d.month}/{d.year} (el {d.day}/{d.month} es parcial)", html)
+html = re.sub(r"Actualizado: \d+/\d+/\d{4} \d+:\d+", f"Actualizado: {d.day}/{d.month}/{d.year} {d.strftime('%H:%M')}", html)
 open("index.html", "w", encoding="utf-8").write(html)
 tot = sum(r[2] for r in ord_rows if r[0] == now.strftime("%Y-%m-%d"))
 print("ok", now.strftime("%Y-%m-%d %H:%M"), "ordenes ventana", len(ord_rows), "venta hoy", tot)
