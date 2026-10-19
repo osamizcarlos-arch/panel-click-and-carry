@@ -1,5 +1,5 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paris Night Mercadolibre</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#FFE600"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PN Ventas"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png">
-<style>:root{--color-fg:#1a1a1a;--color-fg-muted:#6b6b6b;--color-bg:#f6f6f4;--color-panel:#fff;--color-border-line:#e3e3e0;--cds-radius:12px;--cds-gap-md:12px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-lg:16px;--cds-pad-xl:24px;--cds-font-size-caption:12px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:22px;--cds-font-weight-medium:500;--cds-chart-grid:#e5e5e2;--cds-chart-reference:#8a8a86;--cds-surface-popover:#fff;--cds-border:#d8d8d4;--cds-shadow-popover:0 2px 8px rgba(0,0,0,.15);--font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif}
+<style>:root{--color-fg:#333;--color-fg-muted:#737373;--color-bg:#ebebeb;--color-panel:#fff;--color-border-line:#e6e6e6;--cds-radius:12px;--cds-gap-md:12px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-lg:16px;--cds-pad-xl:24px;--cds-font-size-caption:12px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:22px;--cds-font-weight-medium:500;--cds-chart-grid:#e5e5e2;--cds-chart-reference:#8a8a86;--cds-surface-popover:#fff;--cds-border:#d8d8d4;--cds-shadow-popover:0 2px 8px rgba(0,0,0,.15);--font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-anthropic-serif:Georgia,"Times New Roman",serif}
 @media(prefers-color-scheme:dark){:root{--color-fg:#ececea;--color-fg-muted:#a3a3a0;--color-bg:#121212;--color-panel:#1c1c1c;--color-border-line:#333;--cds-chart-grid:#2c2c2c;--cds-surface-popover:#242424;--cds-border:#444}}
 html,body{margin:0;background:var(--color-bg)}body{padding:16px 16px 0}
 </style>
@@ -12,7 +12,7 @@ window.__RAW={"ordenes":{"cols":["fecha","hora","venta","estado"],"rows":[["2026
 const store={};
 const toObjs=t=>t.rows.map(r=>{const o={};t.cols.forEach((c,i)=>o[c]=r[i]);return o;});
 for(const k in window.__RAW)store[k]=toObjs(window.__RAW[k]);
-window.dash={colors:['#2f6fb0','#f08a24','#3a9d6e','#8a5bb5','#c4483f','#2aa3b8','#b8a02a','#7a7a7a'],
+window.dash={colors:['#3483FA','#00A650','#3a9d6e','#8a5bb5','#c4483f','#2aa3b8','#b8a02a','#7a7a7a'],
  calc:(id,o)=>{store[id]=o.fn(...o.inputs.map(i=>store[i]));},
  data:id=>store[id]?{status:'ok',data:store[id]}:{status:'missing',data:[]},
  onData:fn=>{fn();let w=window.innerWidth,t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>{if(window.innerWidth!==w){w=window.innerWidth;fn();}},150);});}};
@@ -20,20 +20,20 @@ window.dash={colors:['#2f6fb0','#f08a24','#3a9d6e','#8a5bb5','#c4483f','#2aa3b8'
 </script>
 <style>
 .pn{font-family:var(--font-anthropic-sans);color:var(--color-fg);max-width:560px;margin-inline:auto}
-.pn .hd{margin-bottom:var(--cds-gap-md);text-align:center}
-.pn .ttl{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-weight:400}
+.pn .hd{margin-bottom:var(--cds-gap-md);text-align:center;background:#FFE600;color:#333;padding:14px 12px;border-radius:var(--cds-radius);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.pn .ttl{font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-heading);font-weight:700;letter-spacing:.5px}
 .pn .sub,.pn .note,.pn .lbl{color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
 .pn .tabs{display:flex;gap:6px;margin-bottom:var(--cds-gap-md);flex-wrap:wrap}
 .pn .btn{font:inherit;font-size:var(--cds-font-size-body);cursor:pointer;padding:7px 14px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);color:var(--color-fg)}
-.pn .btn.on{background:var(--color-fg);color:var(--color-bg);border-color:var(--color-fg)}
+.pn .btn.on{background:#3483FA;color:#fff;border-color:#3483FA}
 .pn .nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:var(--cds-gap-md)}
 .pn .nav .btn{border-radius:var(--cds-radius);padding:7px 12px}
 .pn .nav .cur{font-weight:var(--cds-font-weight-medium);text-align:center;flex:1}
 .pn input[type=date]{font:inherit;color:var(--color-fg);background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:5px}
 .pn .card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);margin-bottom:var(--cds-gap-md)}
 .pn .card h2{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0 0 2px}
-.pn .hero{border-radius:var(--cds-radius);padding:var(--cds-pad-xl) var(--cds-pad-lg);text-align:center;margin-bottom:var(--cds-gap-md);color:#fff}
-.pn .hero .lbl{color:rgba(255,255,255,.85)}
+.pn .hero{border-radius:var(--cds-radius);padding:var(--cds-pad-xl) var(--cds-pad-lg);text-align:center;margin-bottom:var(--cds-gap-md);color:#333}
+.pn .hero .lbl{color:rgba(51,51,51,.8)}
 .pn .hero .big{font-family:var(--font-anthropic-serif);font-size:2.4rem;display:block;font-variant-numeric:tabular-nums}
 .pn .two{display:grid;grid-template-columns:1fr 1fr;gap:var(--cds-gap-md);margin-bottom:var(--cds-gap-md)}
 .pn .two .card{margin:0;text-align:center}
@@ -49,7 +49,7 @@ window.dash={colors:['#2f6fb0','#f08a24','#3a9d6e','#8a5bb5','#c4483f','#2aa3b8'
 .pn .bar{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);background:var(--color-panel);border-top:1px solid var(--color-border-line);margin-top:var(--cds-gap-md);z-index:4}
 .pn .bar .btn{border:0;border-radius:0;background:transparent;padding:13px 2px;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
 .pn .foot{text-align:center}
-.pn .bar .btn.on{color:var(--color-fg);font-weight:600;box-shadow:inset 0 2px 0 var(--color-fg)}
+.pn .bar .btn.on{color:#3483FA;font-weight:600;box-shadow:inset 0 2px 0 #3483FA}
 </style>
 <div class="pn" id="pn">
   <div class="hd"><div class="ttl">PARIS NIGHT MERCADOLIBRE</div></div>
@@ -114,7 +114,7 @@ function table(cols,rows,src,keyCols,keyFn){
   const tb=el('tbody');rows.forEach(r=>{const tr=el('tr',null,null,{'data-key':keyFn(r)});cols.forEach(c=>tr.appendChild(el('td',c.cls||null,c.fmt?c.fmt(r[c.f]):r[c.f])));tb.appendChild(tr);});t.appendChild(tb);return t;}
 const ek=(...p)=>p.map(encodeURIComponent).join(',');
 function hero(label,value,src,field,where){
-  const h=el('div','hero');h.style.background=dash.colors[0];h.appendChild(el('div','lbl',label));
+  const h=el('div','hero');h.style.background='#FFE600';h.appendChild(el('div','lbl',label));
   const a={};if(where){a['data-source']=src;a['data-field']=field;a['data-where']=where;}
   h.appendChild(el('span','big',value,a));return h;}
 function mini(label,value,src,field,where){
